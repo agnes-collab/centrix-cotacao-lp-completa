@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Freitas Centrix – Materiais de Campanha v2</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0F1628;
+    --navy-mid: #1a2540;
+    --orange: #F5A623;
+    --orange-light: #FFB940;
+    --orange-pale: rgba(245,166,35,0.12);
+    --white: #FFFFFF;
+    --gray-100: #F4F5F7;
+    --gray-200: #E8EAF0;
+    --gray-400: #9AA0B2;
+    --text-main: #1a2540;
+    --text-muted: #5C6478;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: #F4F5F7; color: var(--text-main); line-height: 1.6; }
+
+  .nav { background: var(--navy); padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+  .nav-logo { font-family: 'Syne', sans-serif; color: var(--white); font-size: 1.1rem; font-weight: 600; letter-spacing: 0em; }
+  .nav-logo span { color: var(--orange); }
+  .nav-tabs { display: flex; gap: 0.5rem; }
+  .nav-tab { background: transparent; border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.6); padding: 0.45rem 1rem; border-radius: 6px; cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 500; transition: all 0.2s; }
+  .nav-tab:hover { border-color: var(--orange); color: var(--orange); }
+  .nav-tab.active { background: var(--orange); border-color: var(--orange); color: var(--navy); font-weight: 600; }
+
+  .section { display: none; }
+  .section.active { display: block; }
+  .container { max-width: 960px; margin: 0 auto; }
+  .section-label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange); font-weight: 600; margin-bottom: 0.8rem; }
+  .section-title { font-family: 'Syne', sans-serif; font-size: clamp(1.7rem, 3.5vw, 2.6rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; color: var(--navy); }
+  .section-title em { color: var(--orange); font-style: normal; }
+
+  /* HERO */
+  .hero { background: var(--navy); padding: 5rem 2rem 4rem; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -80px; left: 50%; transform: translateX(-50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(245,166,35,0.07) 0%, transparent 70%); pointer-events: none; }
+  .hero-badge { display: inline-flex; align-items: center; background: rgba(245,166,35,0.1); border: 1px solid rgba(245,166,35,0.22); color: var(--orange); padding: 0.35rem 0.9rem; border-radius: 20px; font-size: 0.73rem; font-weight: 500; letter-spacing: 0.05em; margin-bottom: 1.8rem; text-transform: uppercase; }
+  .hero h1 { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; color: var(--white); line-height: 1.15; max-width: 760px; margin: 0 auto 1.3rem; letter-spacing: -0.015em; }
+  .hero h1 em { color: var(--orange); font-style: normal; }
+  .hero-sub { font-size: 1rem; color: rgba(255,255,255,0.52); max-width: 550px; margin: 0 auto 2.4rem; font-weight: 300; line-height: 1.78; }
+  .hero-form { display: flex; gap: 0.75rem; max-width: 520px; margin: 0 auto 1rem; flex-wrap: wrap; justify-content: center; }
+  .hero-form input { flex: 1; min-width: 210px; padding: 0.85rem 1.2rem; border-radius: 8px; border: 1.5px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 0.95rem; outline: none; transition: border 0.2s; }
+  .hero-form input::placeholder { color: rgba(255,255,255,0.28); }
+  .hero-form input:focus { border-color: var(--orange); }
+  .btn-orange { background: var(--orange); color: var(--navy); padding: 0.85rem 1.8rem; border-radius: 8px; font-family: 'Syne', sans-serif; font-size: 0.92rem; font-weight: 700; border: none; cursor: pointer; transition: background 0.2s, transform 0.15s; white-space: nowrap; }
+  .btn-orange:hover { background: var(--orange-light); transform: translateY(-1px); }
+  .hero-disclaimer { font-size: 0.73rem; color: rgba(255,255,255,0.26); margin-top: 0.6rem; }
+
+  /* MULTISTEP FORM */
+  .multistep-form { max-width: 540px; margin: 0 auto; }
+  .form-step { display: flex; flex-direction: column; gap: 0.6rem; }
+  .form-row { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+  .form-row input, .form-row select {
+    flex: 1; min-width: 180px;
+    padding: 0.8rem 1.1rem; border-radius: 8px;
+    border: 1.5px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.05); color: var(--white);
+    font-family: 'DM Sans', sans-serif; font-size: 0.92rem;
+    outline: none; transition: border 0.2s; appearance: none;
+  }
+  .form-row input::placeholder { color: rgba(255,255,255,0.3); }
+  .form-row input:focus, .form-row select:focus { border-color: var(--orange); }
+  .form-row select option { background: var(--navy-mid); color: var(--white); }
+  .form-row select { color: rgba(255,255,255,0.3); cursor: pointer; }
+  .form-row select.filled { color: var(--white); }
+  .step2-label {
+    font-size: 0.72rem; letter-spacing: 0.07em; text-transform: uppercase;
+    color: var(--orange); font-weight: 600; margin-bottom: 0.2rem;
+  }
+  .form-row-actions { display: flex; gap: 0.6rem; align-items: center; }
+  .btn-back {
+    background: transparent; border: 1.5px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.5); padding: 0.8rem 1.2rem; border-radius: 8px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem; cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-back:hover { border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.8); }
+  .form-progress {
+    display: flex; align-items: center; justify-content: center;
+    gap: 0.5rem; margin-top: 1.2rem;
+  }
+  .progress-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: rgba(255,255,255,0.18); transition: background 0.3s;
+  }
+  .progress-dot.active { background: var(--orange); }
+  .progress-line { width: 32px; height: 1.5px; background: rgba(255,255,255,0.12); }
+  .hero-logos { display: flex; align-items: center; justify-content: center; gap: 1.2rem; margin-top: 3.5rem; flex-wrap: wrap; }
+  .hero-logos-label { font-size: 0.68rem; color: rgba(255,255,255,0.26); letter-spacing: 0.08em; text-transform: uppercase; }
+  .logo-pill { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.42); font-size: 0.76rem; font-weight: 500; padding: 0.28rem 0.75rem; border-radius: 4px; }
+  .logo-img { height: 28px; width: auto; object-fit: contain; opacity: 0.7; filter: brightness(0) invert(1); transition: opacity 0.2s; }
+  .logo-img:hover { opacity: 1; }
+  .logo-img-color { filter: none; }
+
+  /* DOR */
+  .pain-block { background: var(--white); padding: 4.5rem 2rem; }
+  .pain-intro { max-width: 620px; margin-bottom: 2.5rem; }
+  .pain-intro p { margin-top: 1rem; font-size: 0.97rem; color: var(--text-muted); line-height: 1.78; }
+  .pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.25rem; }
+  .pain-card { border: 1.5px solid var(--gray-200); border-radius: 12px; padding: 1.5rem; transition: border-color 0.2s; }
+  .pain-card:hover { border-color: rgba(245,166,35,0.3); }
+  .pain-marker { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--orange); margin-bottom: 1rem; }
+  .pain-card h3 { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .pain-card p { font-size: 0.87rem; color: var(--text-muted); line-height: 1.65; }
+
+  /* VALOR */
+  .value-block { background: var(--gray-100); padding: 4.5rem 2rem; }
+  .value-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center; }
+  .value-text p { margin-top: 1.2rem; font-size: 0.97rem; color: var(--text-muted); line-height: 1.8; }
+  .value-visual { background: var(--navy); border-radius: 14px; padding: 2rem; }
+  .vv-label { font-size: 0.63rem; letter-spacing: 0.1em; color: var(--orange); font-weight: 600; text-transform: uppercase; margin-bottom: 1.2rem; display: block; }
+  .frete-row { display: flex; align-items: flex-start; justify-content: space-between; padding: 0.85rem 1rem; border-radius: 8px; margin-bottom: 0.5rem; border: 1px solid rgba(255,255,255,0.07); }
+  .frete-row.top { background: rgba(245,166,35,0.1); border-color: rgba(245,166,35,0.2); }
+  .frete-carrier { font-size: 0.82rem; color: rgba(255,255,255,0.75); font-weight: 500; }
+  .frete-detail { font-size: 0.7rem; color: rgba(255,255,255,0.3); margin-top: 0.2rem; }
+  .frete-right { text-align: right; }
+  .frete-price { font-family: 'Syne', sans-serif; font-size: 0.93rem; color: var(--white); font-weight: 700; }
+  .frete-tag { display: inline-block; font-size: 0.64rem; padding: 0.15rem 0.45rem; border-radius: 3px; margin-top: 0.25rem; font-weight: 600; }
+  .frete-tag.ok { background: rgba(245,166,35,0.18); color: var(--orange); }
+  .frete-tag.pend { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.28); }
+  .vv-footer { margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.07); font-size: 0.7rem; color: rgba(255,255,255,0.26); line-height: 1.6; }
+
+  /* DIFERENCIAIS */
+  .dif-block { background: var(--white); padding: 4.5rem 2rem; }
+  .dif-intro { max-width: 580px; margin-bottom: 2.5rem; }
+  .dif-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+  .dif-card { border-radius: 12px; padding: 1.75rem 1.75rem 1.75rem 1.5rem; border: 1.5px solid var(--gray-200); position: relative; }
+  .dif-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--orange); border-radius: 12px 0 0 12px; }
+  .dif-card h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.65rem; }
+  .dif-card p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; }
+
+  /* CENTRIX */
+  .centrix-block { background: var(--navy); padding: 4.5rem 2rem; }
+  .centrix-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .centrix-text .section-title { color: var(--white); }
+  .centrix-text p { font-size: 0.97rem; color: rgba(255,255,255,0.48); margin-top: 1.2rem; line-height: 1.8; }
+  .centrix-pillars { display: flex; flex-direction: column; gap: 0.75rem; }
+  .pillar { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: 10px; padding: 1.2rem 1.4rem; display: flex; gap: 1rem; align-items: flex-start; }
+  .pillar-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--orange); margin-top: 0.35rem; flex-shrink: 0; }
+  .pillar h4 { font-family: 'Syne', sans-serif; color: var(--white); font-size: 0.88rem; font-weight: 600; margin-bottom: 0.25rem; }
+  .pillar p { font-size: 0.8rem; color: rgba(255,255,255,0.36); line-height: 1.55; }
+
+  /* PROVA */
+  .proof-block { background: var(--gray-100); padding: 4.5rem 2rem; }
+  .testimonials { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.25rem; margin-top: 2.5rem; }
+  .testi-card { background: var(--white); border-radius: 12px; padding: 1.5rem; border: 1.5px solid var(--gray-200); }
+  .testi-quote { font-size: 0.9rem; color: var(--text-main); line-height: 1.7; font-style: italic; margin-bottom: 1rem; }
+  .testi-company { font-family: 'Syne', sans-serif; font-size: 0.78rem; font-weight: 700; color: var(--orange); }
+
+  /* CTA */
+  .cta-block { background: var(--orange); padding: 4.5rem 2rem; text-align: center; }
+  .cta-block h2 { font-family: 'Syne', sans-serif; font-size: clamp(1.6rem, 3.5vw, 2.3rem); font-weight: 600; color: var(--navy); max-width: 600px; margin: 0 auto 1rem; line-height: 1.15; letter-spacing: -0.025em; }
+  .cta-block p { color: rgba(15,22,40,0.58); max-width: 460px; margin: 0 auto 2rem; font-size: 0.97rem; line-height: 1.7; }
+  .section-cta { margin-top: 2.5rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .section-cta a, .section-cta button {
+    background: var(--orange); color: var(--navy);
+    padding: 0.75rem 1.6rem; border-radius: 8px;
+    font-family: 'Syne', sans-serif; font-size: 0.88rem; font-weight: 700;
+    border: none; cursor: pointer; text-decoration: none; display: inline-block;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .section-cta a:hover, .section-cta button:hover { background: var(--orange-light); transform: translateY(-1px); }
+  .section-cta-ghost {
+    font-size: 0.85rem; color: var(--text-muted);
+    font-weight: 400;
+  }
+  .centrix-block .section-cta a { background: rgba(245,166,35,0.15); color: var(--orange); border: 1px solid rgba(245,166,35,0.3); }
+  .centrix-block .section-cta a:hover { background: rgba(245,166,35,0.25); }
+  .centrix-block .section-cta-ghost { color: rgba(255,255,255,0.3); }
+  .proof-block .section-cta { justify-content: center; margin-top: 2.5rem; }
+
+  .btn-navy { background: var(--navy); color: var(--white); padding: 0.9rem 2rem; border-radius: 8px; font-family: 'Syne', sans-serif; font-size: 0.92rem; font-weight: 700; border: none; cursor: pointer; display: inline-block; transition: transform 0.15s; }
+  .btn-navy:hover { transform: translateY(-1px); }
+
+  /* CRIATIVOS */
+  .criativo-section { padding: 2.5rem 2rem; max-width: 960px; margin: 0 auto; }
+  .criativo-section > h2 { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 800; color: var(--navy); margin-bottom: 0.4rem; }
+  .sub { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 2rem; }
+  .criativo-grid { display: grid; gap: 2rem; }
+  .criativo-card { background: var(--white); border-radius: 14px; overflow: hidden; border: 1.5px solid var(--gray-200); }
+  .criativo-header { padding: 1rem 1.5rem; border-bottom: 1px solid var(--gray-200); display: flex; align-items: center; gap: 0.75rem; }
+  .criativo-num { width: 28px; height: 28px; border-radius: 6px; background: var(--orange); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 0.8rem; font-weight: 800; color: var(--navy); }
+  .criativo-header h3 { font-family: 'Syne', sans-serif; font-size: 0.92rem; font-weight: 700; color: var(--navy); }
+  .criativo-body { display: grid; grid-template-columns: 1fr 1fr; }
+  .criativo-visual { padding: 2.5rem; display: flex; flex-direction: column; justify-content: flex-end; min-height: 260px; }
+  .criativo-text { padding: 2rem; border-left: 1px solid var(--gray-200); }
+  .criativo-text h4 { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--orange); font-weight: 600; margin-bottom: 0.75rem; }
+  .criativo-text p { font-size: 0.88rem; line-height: 1.75; color: var(--text-main); }
+  .hashtags { margin-top: 0.85rem; font-size: 0.78rem; color: var(--gray-400); }
+  .cta-pill { display: inline-flex; align-items: center; gap: 0.3rem; background: var(--navy); color: var(--white); font-family: 'Syne', sans-serif; font-size: 0.76rem; font-weight: 700; padding: 0.4rem 0.85rem; border-radius: 5px; margin-top: 1rem; }
+  .cta-badge {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: var(--orange); color: var(--navy);
+    font-family: 'Syne', sans-serif; font-size: 0.72rem; font-weight: 700;
+    padding: 0.35rem 0.8rem; border-radius: 20px; margin-top: 1.4rem;
+    letter-spacing: 0.01em;
+  }
+  .cta-badge.dark { background: var(--navy); color: var(--orange); }
+  .bg-navy { background: var(--navy); }
+  .bg-orange { background: var(--orange); }
+  .bg-texture { background: #1a2540; background-image: repeating-linear-gradient(0deg,transparent,transparent 40px,rgba(255,255,255,0.014) 40px,rgba(255,255,255,0.014) 41px),repeating-linear-gradient(90deg,transparent,transparent 40px,rgba(255,255,255,0.014) 40px,rgba(255,255,255,0.014) 41px); }
+  .img-tag { font-size: 0.66rem; letter-spacing: 0.09em; font-weight: 600; text-transform: uppercase; margin-bottom: 1rem; }
+  .img-copy { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 700; line-height: 1.18; letter-spacing: -0.01em; }
+  .img-copy.white { color: var(--white); }
+  .img-copy.navy { color: var(--navy); }
+  .hl-orange { color: var(--orange); }
+  .hl-muted { opacity: 0.48; }
+
+  /* ADS */
+  .ads-section { padding: 2.5rem 2rem; max-width: 960px; margin: 0 auto; }
+  .ads-section > h2 { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 800; color: var(--navy); margin-bottom: 0.3rem; }
+  .ads-block { background: var(--white); border-radius: 14px; padding: 1.75rem; border: 1.5px solid var(--gray-200); margin-bottom: 1.5rem; }
+  .ads-block-title { font-family: 'Syne', sans-serif; font-size: 0.88rem; font-weight: 700; color: var(--navy); margin-bottom: 1.1rem; display: flex; align-items: center; gap: 0.5rem; }
+  .ads-block-title span { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; background: var(--orange-pale); color: #8a5e00; padding: 0.2rem 0.5rem; border-radius: 4px; }
+  .preview-box { background: var(--gray-100); border-radius: 10px; padding: 1.25rem 1.5rem; }
+  .preview-url { font-size: 0.77rem; color: #188038; margin-bottom: 0.25rem; }
+  .preview-title { font-size: 1.1rem; color: #1a0dab; font-weight: 500; margin-bottom: 0.3rem; }
+  .preview-desc { font-size: 0.86rem; color: #4d5156; line-height: 1.55; }
+  .headline-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 0.6rem; }
+  .hl-item { font-size: 0.85rem; color: var(--text-main); padding: 0.65rem 0.8rem; border: 1px solid var(--gray-200); border-radius: 7px; line-height: 1.4; }
+  .hl-chars { font-size: 0.67rem; color: var(--gray-400); margin-top: 0.2rem; }
+  .desc-list { display: flex; flex-direction: column; gap: 0.75rem; }
+  .desc-item { font-size: 0.88rem; color: var(--text-main); padding: 0.8rem 1rem; border: 1px solid var(--gray-200); border-radius: 7px; line-height: 1.6; }
+  .desc-chars { font-size: 0.67rem; color: var(--gray-400); margin-top: 0.3rem; }
+  .kw-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .kw-tag { font-size: 0.8rem; padding: 0.3rem 0.75rem; border-radius: 5px; border: 1px solid var(--gray-200); }
+  .kw-tag.high { background: rgba(245,166,35,0.08); border-color: rgba(245,166,35,0.26); color: #8a5e00; }
+  .kw-tag.mid { background: var(--gray-100); color: var(--text-muted); }
+  .kw-tag.neg { background: rgba(220,38,38,0.04); border-color: rgba(220,38,38,0.18); color: #b91c1c; }
+
+  @media (max-width: 680px) {
+    .value-inner, .centrix-inner { grid-template-columns: 1fr; }
+    .criativo-body { grid-template-columns: 1fr; }
+    .criativo-text { border-left: none; border-top: 1px solid var(--gray-200); }
+    .nav-tabs { gap: 0.25rem; }
+    .nav-tab { font-size: 0.7rem; padding: 0.38rem 0.6rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo">freitas <span>centrix</span></div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showSection('lp', this)">Landing Page</button>
+    <button class="nav-tab" onclick="showSection('lp2', this)">Landing Page Compacta</button>
+    <button class="nav-tab" onclick="showSection('criativos', this)">Criativos</button>
+    <button class="nav-tab" onclick="showSection('ads', this)">Google Ads</button>
+  </div>
+</nav>
+
+<!-- ═══ LANDING PAGE ═══ -->
+<div id="lp" class="section active">
+
+  <section class="hero">
+    <div class="hero-badge">Comércio Exterior · Frete Internacional</div>
+    <h1>Sua cotação de frete internacional<br><em>é competitiva?</em></h1>
+    <p class="hero-sub">Trabalhamos com parceiros homologados e de confiança para comparar sua cotação com o mercado real e mostrar onde você pode negociar melhor.</p>
+        <div role="main" id="formulario-cotacao-de-frete-gratis-31e218a330692c39c143"></div>
+<script type="text/javascript">
+  (function() {
+    var script = document.createElement('script');
+    script.src = 'https://d335luupugsy2.cloudfront.net/js/rdstation-forms/stable/rdstation-forms.min.js';
+    script.onload = function() {
+      new RDStationForms('formulario-cotacao-de-frete-gratis-31e218a330692c39c143', 'UA-24773816-2').createForm();
+    };
+    document.head.appendChild(script);
+  })();
+</script>
+    <div class="hero-logos">
+      <span class="hero-logos-label">Empresas que confiam:</span>
+      <img src="https://freitascomex.com.br/wp-content/uploads/2026/04/incepa-branco.png" alt="Incepa" class="logo-img" />
+      <img src="https://freitascomex.com.br/wp-content/uploads/2026/04/pregel-branco.png" alt="PreGel" class="logo-img" />
+      <img src="https://freitascomex.com.br/wp-content/uploads/2026/04/FGM-Branco.png" alt="FGM" class="logo-img" />
+      <img src="https://freitascomex.com.br/wp-content/uploads/2026/04/regofix-branco.png" alt="Rego-Fix" class="logo-img" />
+      <img src="https://freitascomex.com.br/wp-content/uploads/2026/04/logo-zen.png" alt="Zen" class="logo-img logo-img-color" />
+    </div>
+  </section>
+
+  <section class="pain-block">
+    <div class="container">
+      <div class="pain-intro">
+        <p class="section-label">O problema</p>
+        <h2 class="section-title">Quem cota com um único agente não tem <em>referência de mercado</em>.</h2>
+        <p>E quem não tem referência paga o que apresentam. Sem saber se a cotação é competitiva, se o Incoterm está correto ou se existe uma rota mais vantajosa para aquela carga.</p>
+      </div>
+      <div class="pain-grid">
+        <div class="pain-card">
+          <div class="pain-marker"></div>
+          <h3>Seu agente tem interesse em qual armador você escolhe</h3>
+          <p>Comissões e acordos comerciais influenciam o que é apresentado na cotação. O preço mais competitivo para você pode não ser o mais vantajoso para quem está cotando.</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-marker"></div>
+          <h3>Cotações incomparáveis</h3>
+          <p>Cada agente monta o preço de um jeito diferente. Um inclui taxas locais, outro não. Um considera o Incoterm, outro ignora. Comparar fica impossível e a decisão vira chute.</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-marker"></div>
+          <h3>Frete negociado sem poder de mercado</h3>
+          <p>Armadores respondem melhor a quem tem volume consolidado e relacionamento. Negociar frete individualmente, processo a processo, quase sempre resulta em tabela cheia.</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-marker"></div>
+          <h3>Incoterm mal escolhido que encarece a operação</h3>
+          <p>A escolha do Incoterm define quem paga o quê — e um termo inadequado para a rota ou o perfil do fornecedor pode encarecer o frete sem que você perceba.</p>
+        </div>
+      </div>
+      <div class="section-cta">
+        <button>Cotação de frete internacional gratuita →</button>
+        <span class="section-cta-ghost">Cotação de frete internacional gratuita. Retorno em até 1 dia útil.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="value-block">
+    <div class="container">
+      <div class="value-inner">
+        <div class="value-text">
+          <p class="section-label">O que fazemos</p>
+          <h2 class="section-title">Sua cotação atual é competitiva? A gente compara com o mercado e <em>você decide com dados reais</em>.</h2>
+          <p>O Freitas Centrix não compara tabelas de armadores. Avalia cada rota com base em histórico real de desempenho, analisa os custos que normalmente aparecem depois e indica o parceiro que faz sentido para o seu perfil de importação. A decisão fica com você, mas com os dados corretos na mão.</p>
+        </div>
+        <div class="value-visual">
+          <span class="vv-label">Cotação · Rota Xangai → Santos · 1× 40'HC</span>
+          <div class="frete-row top">
+            <div>
+              <div class="frete-carrier">MSC Mediterranean</div>
+              <div class="frete-detail">Trânsito 28 dias · Escala direta · Histórico: 94% on-time nessa rota</div>
+            </div>
+            <div class="frete-right">
+              <div class="frete-price">USD 2.840</div>
+              <span class="frete-tag ok">Indicado</span>
+            </div>
+          </div>
+          <div class="frete-row">
+            <div>
+              <div class="frete-carrier">CMA CGM</div>
+              <div class="frete-detail">Trânsito 32 dias · 1 transbordo · Histórico: 81% on-time nessa rota</div>
+            </div>
+            <div class="frete-right">
+              <div class="frete-price">USD 3.100</div>
+              <span class="frete-tag pend">Em análise</span>
+            </div>
+          </div>
+          <div class="frete-row">
+            <div>
+              <div class="frete-carrier">Evergreen</div>
+              <div class="frete-detail">Trânsito 35 dias · 2 transbordos · Histórico: 76% on-time nessa rota</div>
+            </div>
+            <div class="frete-right">
+              <div class="frete-price">USD 3.380</div>
+              <span class="frete-tag pend">Em análise</span>
+            </div>
+          </div>
+          <div class="vv-footer">Análise inclui estimativa de taxas locais · armazenagem inicial · DTA · prazo de desembaraço na rota</div>
+        </div>
+      </div>
+      <div class="section-cta">
+        <button>Cotação de frete internacional gratuita →</button>
+        <span class="section-cta-ghost">Cotação de frete internacional gratuita. Retorno em até 1 dia útil.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="dif-block">
+    <div class="container">
+      <div class="dif-intro">
+        <p class="section-label">Por que funciona</p>
+        <h2 class="section-title">O que muda quando você tem <em>referência real de mercado</em> na mão.</h2>
+      </div>
+      <div class="dif-grid">
+        <div class="dif-card">
+          <h3>Acesso a agentes homologados e de confiança</h3>
+          <p>O Freitas Centrix não representa armador nem recebe comissão por indicação. Recomendamos o agente que faz sentido para a sua rota e o seu perfil de carga, não o que tem melhor acordo comercial.</p>
+        </div>
+        <div class="dif-card">
+          <h3>Cotações estruturadas no mesmo formato</h3>
+          <p>Todas as opções chegam com os mesmos itens detalhados, permitindo uma comparação real entre alternativas. Você decide com clareza, não por intuição.</p>
+        </div>
+        <div class="dif-card">
+          <h3>Poder de negociação que empresa isolada não tem</h3>
+          <p>Operamos com volume consolidado de clientes, o que nos dá acesso a condições que dificilmente estão disponíveis para quem negocia processo a processo.</p>
+        </div>
+      </div>
+      <div class="section-cta">
+        <button>Cotação de frete internacional gratuita →</button>
+        <span class="section-cta-ghost">Cotação de frete internacional gratuita. Retorno em até 1 dia útil.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="centrix-block">
+    <div class="container">
+      <div class="centrix-inner">
+        <div class="centrix-text">
+          <p class="section-label">Além da cotação</p>
+          <h2 class="section-title">Para quem quer controle sobre toda a operação, existe o <em>Centrix</em>.</h2>
+          <p>A cotação resolve um ponto específico da cadeia. O Centrix resolve a operação inteira. Funciona como uma central de controle da sua logística internacional: execução, visibilidade e antecipação de problemas, tudo num único ambiente, sem sobrecarregar sua equipe de Comex.</p>
+        </div>
+        <div class="centrix-pillars">
+          <div class="pillar">
+            <div class="pillar-dot"></div>
+            <div>
+              <h4>Centralização de parceiros e dados</h4>
+              <p>Armadores, despachantes, financeiro e compras conectados num só lugar. Nada de informação espalhada em e-mail.</p>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-dot"></div>
+            <div>
+              <h4>Execução operacional por conta nossa</h4>
+              <p>Follow-up, análise documental, bookings e gestão de risco. Sua equipe foca no que exige decisão.</p>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-dot"></div>
+            <div>
+              <h4>Visibilidade em tempo real</h4>
+              <p>Status, documentos, prazos e custos atualizados. Você acompanha sem precisar perguntar para ninguém.</p>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-dot"></div>
+            <div>
+              <h4>Alertas antes do problema virar custo</h4>
+              <p>Atrasos e pendências sinalizados cedo o suficiente para agir antes que o impacto apareça.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section-cta" style="margin-top:2.5rem;">
+        <a href="#">Cotação de frete internacional gratuita →</a>
+        <span class="section-cta-ghost">Ou conheça o Centrix completo em freitascentrix.com.br</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="proof-block">
+    <div class="container">
+      <p class="section-label">Quem usa, vê resultado</p>
+      <h2 class="section-title" style="max-width: 560px;">O que dizem empresas que <em>já operam com o Freitas Centrix</em>.</h2>
+      <div class="testimonials">
+        <div class="testi-card">
+          <p class="testi-quote">"Agregam transparência nos processos. Antes era tudo espalhado em e-mail e planilha."</p>
+          <div class="testi-company">Incepa</div>
+        </div>
+        <div class="testi-card">
+          <p class="testi-quote">"Melhora nosso nível de serviço com os clientes e otimiza nosso tempo de forma significativa."</p>
+          <div class="testi-company">Rego-Fix</div>
+        </div>
+        <div class="testi-card">
+          <p class="testi-quote">"Em geral uma experiência bastante positiva. Sempre fomos atendidos de forma muito rápida."</p>
+          <div class="testi-company">PreGel</div>
+        </div>
+        <div class="testi-card">
+          <p class="testi-quote">"Reduz nossos custos e nos otimiza operacionalmente. É a combinação que a gente precisava."</p>
+          <div class="testi-company">Zen</div>
+        </div>
+        <div class="testi-card">
+          <p class="testi-quote">"Tem vasto conhecimento, passando confiança e comprometimento, resultando na satisfação de todos."</p>
+          <div class="testi-company">CicloMed</div>
+        </div>
+        <div class="testi-card">
+          <p class="testi-quote">"Melhora a performance do nosso processo de importação de forma consistente."</p>
+          <div class="testi-company">FGM Odontológicos</div>
+        </div>
+      </div>
+      <div class="section-cta proof-block">
+        <button>Cotação de frete internacional gratuita →</button>
+        <span class="section-cta-ghost">Cotação de frete internacional gratuita. Retorno em até 1 dia útil.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-block">
+    <h2>Descubra se sua cotação de frete está competitiva no mercado.</h2>
+    <p>Cotação de frete internacional gratuita. Com quem opera Comex todos os dias.</p>
+    <button class="btn-navy">Cotação de frete internacional gratuita →</button>
+  </section>
+</div>
+
+<!-- ═══ LP COMPACTA ═══ -->
+<div id="lp2" class="section">
+
+  <section class="hero">
+    <div class="hero-badge">Comércio Exterior · Frete Internacional</div>
+    <h1>Sua cotação de frete internacional<br><em>é competitiva?</em></h1>
+    <p class="hero-sub">Trabalhamos com parceiros homologados e de confiança para comparar sua cotação com o mercado real e mostrar onde você pode negociar melhor.</p>
+        <div role="main" id="formulario-cotacao-de-frete-gratis-31e218a330692c39c143"></div>
+<script type="text/javascript">
+  (function() {
+    var script = document.createElement('script');
+    script.src = 'https://d335luupugsy2.cloudfront.net/js/rdstation-forms/stable/rdstation-forms.min.js';
+    script.onload = function() {
+      new RDStationForms('formulario-cotacao-de-frete-gratis-31e218a330692c39c143', 'UA-24773816-2').createForm();
+    };
+    document.head.appendChild(script);
+  })();
+</script>
+    <div class="hero-logos">
+      <span class="hero-logos-label">Empresas que confiam:</span>
+      <img src="https://freitascomex.com.br/wp-content/uploads/2026/04/incepa-branco.png" alt="Incepa" class="logo-img" />
+      <img src="https://freitascomex.com.br/wp-content/uploads/2026/04/pregel-branco.png" alt="PreGel" class="logo-img" />
+      <img src="https://freitascomex.com.br/wp-content/uploads/2026/04/FGM-Branco.png" alt="FGM" class="logo-img" />
+      <img src="https://freitascomex.com.br/wp-content/uploads/2026/04/regofix-branco.png" alt="Rego-Fix" class="logo-img" />
+      <img src="https://freitascomex.com.br/wp-content/uploads/2026/04/logo-zen.png" alt="Zen" class="logo-img logo-img-color" />
+    </div>
+  </section>
+
+  <section class="pain-block">
+    <div class="container">
+      <div class="pain-intro">
+        <p class="section-label">O problema</p>
+        <h2 class="section-title">Quem cota com um único agente não tem <em>referência de mercado</em>.</h2>
+        <p>E quem não tem referência paga o que apresentam — sem saber se podia negociar melhor.</p>
+      </div>
+      <div class="pain-grid">
+        <div class="pain-card">
+          <div class="pain-marker"></div>
+          <h3>Seu agente tem interesse em qual armador você escolhe</h3>
+          <p>Comissões e acordos comerciais influenciam o que é apresentado na cotação. O preço mais competitivo para você pode não ser o mais vantajoso para quem está cotando.</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-marker"></div>
+          <h3>Frete negociado sem poder de mercado</h3>
+          <p>Armadores respondem melhor a quem tem volume consolidado. Negociar processo a processo quase sempre resulta em tabela cheia.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dif-block">
+    <div class="container">
+      <div class="dif-intro">
+        <p class="section-label">Por que funciona</p>
+        <h2 class="section-title">O que muda quando você tem <em>referência real de mercado</em> na mão.</h2>
+      </div>
+      <div class="dif-grid">
+        <div class="dif-card">
+          <h3>Agentes homologados e de confiança</h3>
+          <p>Não representamos armador nem recebemos comissão por indicação. Recomendamos o que faz sentido para a sua rota e perfil de carga.</p>
+        </div>
+        <div class="dif-card">
+          <h3>Cotações no mesmo formato, comparáveis de verdade</h3>
+          <p>Todas as opções chegam com os mesmos itens detalhados. Você decide com clareza, não por intuição.</p>
+        </div>
+        <div class="dif-card">
+          <h3>Poder de negociação que empresa isolada não tem</h3>
+          <p>Operamos com volume consolidado de clientes, com acesso a condições que dificilmente estão disponíveis para quem negocia processo a processo.</p>
+        </div>
+      </div>
+      <div class="section-cta">
+        <button>Cotação de frete internacional gratuita →</button>
+        <span class="section-cta-ghost">Cotação de frete internacional gratuita. Retorno em até 1 dia útil.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-block">
+    <h2>Descubra se sua cotação de frete está competitiva no mercado.</h2>
+    <p>Cotação de frete internacional gratuita. Com quem opera Comex todos os dias.</p>
+    <button class="btn-navy">Cotação de frete internacional gratuita →</button>
+  </section>
+
+</div>
+
+<!-- ═══ CRIATIVOS ═══ -->
+<div id="criativos" class="section">
+<style>
+  .cri-section { padding: 2.5rem 2rem; max-width: 1100px; margin: 0 auto; }
+  .cri-section > h2 { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--navy); margin-bottom: 0.3rem; }
+  .cri-section > .sub { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 2.5rem; }
+
+  .copy-block { margin-bottom: 3rem; }
+  .copy-label {
+    display: flex; align-items: center; gap: 0.75rem;
+    margin-bottom: 1.25rem; padding-bottom: 1rem;
+    border-bottom: 1.5px solid var(--gray-200);
+  }
+  .copy-num {
+    width: 32px; height: 32px; border-radius: 7px; background: var(--orange);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 800; color: var(--navy);
+    flex-shrink: 0;
+  }
+  .copy-label h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: var(--navy); }
+  .copy-label span { font-size: 0.78rem; color: var(--text-muted); }
+
+  .versoes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .versao-block { display: flex; flex-direction: column; gap: 0.75rem; }
+  .versao-title {
+    font-size: 0.7rem; letter-spacing: 0.09em; text-transform: uppercase;
+    font-weight: 600; color: var(--text-muted);
+  }
+  .formatos-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; align-items: start; }
+
+  .arte-card { display: flex; flex-direction: column; gap: 0.4rem; }
+  .arte-tag {
+    font-size: 0.65rem; letter-spacing: 0.07em; text-transform: uppercase;
+    font-weight: 600; color: var(--orange);
+  }
+  .arte-feed {
+    width: 100%; aspect-ratio: 1080 / 1350;
+    border-radius: 10px; overflow: hidden;
+    border: 1px solid var(--gray-200);
+    background: var(--navy);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .arte-stories {
+    width: 100%; aspect-ratio: 1080 / 1920;
+    border-radius: 10px; overflow: hidden;
+    border: 1px solid var(--gray-200);
+    background: var(--gray-100);
+  }
+  .arte-feed img {
+    width: 100%; height: 100%; object-fit: contain; display: block;
+  }
+  .arte-stories img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+
+  .legenda-block {
+    background: var(--white); border-radius: 12px;
+    border: 1.5px solid var(--gray-200); padding: 1.25rem 1.5rem;
+    margin-top: 1.25rem;
+  }
+  .legenda-block h4 { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--orange); font-weight: 600; margin-bottom: 0.6rem; }
+  .legenda-block p { font-size: 0.88rem; line-height: 1.75; color: var(--text-main); }
+  .legenda-block .hashtags { margin-top: 0.75rem; font-size: 0.78rem; color: var(--gray-400); }
+</style>
+
+  <div class="cri-section">
+    <h2>Criativos de Campanha</h2>
+    <p class="sub">3 copies · 2 versões cada · Feed 1350×1080 e Stories 1080×1920</p>
+
+    <!-- COPY 1 -->
+    <div class="copy-block">
+      <div class="copy-label">
+        <div class="copy-num">1</div>
+        <div>
+          <h3>Copy 1 · Sua cotação é competitiva?</h3>
+          <span>Público: Gerente / Coordenador de Comex</span>
+        </div>
+      </div>
+      <div class="versoes-grid">
+        <div class="versao-block">
+          <div class="versao-title">Versão 01</div>
+          <div class="formatos-row">
+            <div class="arte-card">
+              <div class="arte-tag">Feed · 1080×1350</div>
+              <div class="arte-feed"><img src="https://freitascomex.com.br/wp-content/uploads/2026/04/C1-FEED-01.png" alt="Copy 1 · Feed 01" /></div>
+            </div>
+            <div class="arte-card">
+              <div class="arte-tag">Stories · 1080×1920</div>
+              <div class="arte-stories"><img src="https://freitascomex.com.br/wp-content/uploads/2026/04/C1-STORIES-01.png" alt="Copy 1 · Stories 01" /></div>
+            </div>
+          </div>
+        </div>
+        <div class="versao-block">
+          <div class="versao-title">Versão 02</div>
+          <div class="formatos-row">
+            <div class="arte-card">
+              <div class="arte-tag">Feed · 1080×1350</div>
+              <div class="arte-feed"><img src="https://freitascomex.com.br/wp-content/uploads/2026/04/C1-FEED-02.png" alt="Copy 1 · Feed 02" /></div>
+            </div>
+            <div class="arte-card">
+              <div class="arte-tag">Stories · 1080×1920</div>
+              <div class="arte-stories"><img src="https://freitascomex.com.br/wp-content/uploads/2026/04/C1-STORIES-02.png" alt="Copy 1 · Stories 02" /></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="legenda-block">
+        <h4>Legenda</h4>
+        <p>Sua cotação de frete é competitiva ou só parece ser? Trabalhamos com parceiros homologados e de confiança para comparar sua cotação com o mercado real.<br>
+        Cotação de frete internacional gratuita.</p>
+        <div class="hashtags">#FreteInternacional #Importacao #ComercioExterior #Comex</div>
+      </div>
+    </div>
+
+    <!-- COPY 2 -->
+    <div class="copy-block">
+      <div class="copy-label">
+        <div class="copy-num">2</div>
+        <div>
+          <h3>Copy 2 · Você está escolhendo a melhor opção?</h3>
+          <span>Público: Gerente / Coordenador de Comex</span>
+        </div>
+      </div>
+      <div class="versoes-grid">
+        <div class="versao-block">
+          <div class="versao-title">Versão 01</div>
+          <div class="formatos-row">
+            <div class="arte-card">
+              <div class="arte-tag">Feed · 1080×1350</div>
+              <div class="arte-feed"><img src="https://freitascomex.com.br/wp-content/uploads/2026/04/C2-FEED-01.png" alt="Copy 2 · Feed 01" /></div>
+            </div>
+            <div class="arte-card">
+              <div class="arte-tag">Stories · 1080×1920</div>
+              <div class="arte-stories"><img src="https://freitascomex.com.br/wp-content/uploads/2026/04/C2-STORIES-01.png" alt="Copy 2 · Stories 01" /></div>
+            </div>
+          </div>
+        </div>
+        <div class="versao-block">
+          <div class="versao-title">Versão 02</div>
+          <div class="formatos-row">
+            <div class="arte-card">
+              <div class="arte-tag">Feed · 1080×1350</div>
+              <div class="arte-feed"><img src="https://freitascomex.com.br/wp-content/uploads/2026/04/C2-FEED-02.png" alt="Copy 2 · Feed 02" /></div>
+            </div>
+            <div class="arte-card">
+              <div class="arte-tag">Stories · 1080×1920</div>
+              <div class="arte-stories"><img src="https://freitascomex.com.br/wp-content/uploads/2026/04/C2-STORIES-02.png" alt="Copy 2 · Stories 02" /></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="legenda-block">
+        <h4>Legenda</h4>
+        <p>Você está escolhendo a melhor opção de frete internacional? O Freitas Centrix compara sua cotação com parceiros homologados e de confiança para mostrar onde você pode negociar melhor.<br>
+        Cotação de frete internacional gratuita.</p>
+        <div class="hashtags">#FreteInternacional #Importacao #ComercioExterior #GestaoDeComex</div>
+      </div>
+    </div>
+
+    <!-- COPY 3 -->
+    <div class="copy-block">
+      <div class="copy-label">
+        <div class="copy-num">3</div>
+        <div>
+          <h3>Copy 3 · Referência de mercado</h3>
+          <span>Público: Diretor de Operações / Logística</span>
+        </div>
+      </div>
+      <div class="versoes-grid">
+        <div class="versao-block">
+          <div class="versao-title">Versão 01</div>
+          <div class="formatos-row">
+            <div class="arte-card">
+              <div class="arte-tag">Feed · 1080×1350</div>
+              <div class="arte-feed"><img src="https://freitascomex.com.br/wp-content/uploads/2026/04/C3-FEED-01.png" alt="Copy 3 · Feed 01" /></div>
+            </div>
+            <div class="arte-card">
+              <div class="arte-tag">Stories · 1080×1920</div>
+              <div class="arte-stories"><img src="https://freitascomex.com.br/wp-content/uploads/2026/04/C3-STORIES-01.png" alt="Copy 3 · Stories 01" /></div>
+            </div>
+          </div>
+        </div>
+        <div class="versao-block">
+          <div class="versao-title">Versão 02</div>
+          <div class="formatos-row">
+            <div class="arte-card">
+              <div class="arte-tag">Feed · 1080×1350</div>
+              <div class="arte-feed"><img src="https://freitascomex.com.br/wp-content/uploads/2026/04/C3-FEED-02.png" alt="Copy 3 · Feed 02" /></div>
+            </div>
+            <div class="arte-card">
+              <div class="arte-tag">Stories · 1080×1920</div>
+              <div class="arte-stories"><img src="https://freitascomex.com.br/wp-content/uploads/2026/04/C3-STORIES-02.png" alt="Copy 3 · Stories 02" /></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="legenda-block">
+        <h4>Legenda</h4>
+        <p>Quem negocia frete sem referência de mercado paga o que apresentam, sem saber se podia pagar menos. Trabalhamos com parceiros homologados e de confiança para mostrar onde sua operação pode ser mais competitiva.<br>
+        Cotação de frete internacional gratuita.</p>
+        <div class="hashtags">#LogisticaInternacional #Importacao #ComercioExterior #GestaoLogistica</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ GOOGLE ADS ═══ -->
+<div id="ads" class="section">
+  <div class="ads-section">
+    <h2>Campanha Google Search</h2>
+    <p class="sub">Headlines, descrições e palavras-chave para captura de leads qualificados em Comex</p>
+
+    <div class="ads-block">
+      <div class="ads-block-title">Preview de anúncio <span>Exemplo</span></div>
+      <div class="preview-box">
+        <div class="preview-url">freitascentrix.com.br › cotacao-frete-internacional</div>
+        <div class="preview-title">Cotação de Frete Internacional | Parceiros Homologados em Comex</div>
+        <div class="preview-desc">Análise técnica de frete com histórico real de desempenho por rota. Equipe especializada em importação. Cotação gratuita em até 1 dia útil.</div>
+      </div>
+    </div>
+
+    <div class="ads-block">
+      <div class="ads-block-title">Headlines <span>15 opções · máx. 30 caracteres</span></div>
+      <div class="headline-grid">
+        <div class="hl-item">Cotação de Frete Grátis<div class="hl-chars">22 chars</div></div>
+        <div class="hl-item">Análise de Rota de Importação<div class="hl-chars">28 chars</div></div>
+        <div class="hl-item">Parceiros Homologados Comex<div class="hl-chars">26 chars</div></div>
+        <div class="hl-item">Frete com Histórico por Rota<div class="hl-chars">27 chars</div></div>
+        <div class="hl-item">Custo Real de Importação<div class="hl-chars">23 chars</div></div>
+        <div class="hl-item">Frete Além do Preço<div class="hl-chars">18 chars</div></div>
+        <div class="hl-item">Importação Sem Custo Oculto<div class="hl-chars">26 chars</div></div>
+        <div class="hl-item">Equipe Especializada em Comex<div class="hl-chars">28 chars</div></div>
+        <div class="hl-item">Freitas Centrix · Comex<div class="hl-chars">22 chars</div></div>
+        <div class="hl-item">Análise Técnica de Frete<div class="hl-chars">23 chars</div></div>
+        <div class="hl-item">Armador Certo para Sua Rota<div class="hl-chars">26 chars</div></div>
+        <div class="hl-item">Gestão de Importação<div class="hl-chars">20 chars</div></div>
+        <div class="hl-item">Controle em Comércio Exterior<div class="hl-chars">28 chars</div></div>
+        <div class="hl-item">BPO de Comex com Resultado<div class="hl-chars">25 chars</div></div>
+        <div class="hl-item">Diagnóstico Logístico Grátis<div class="hl-chars">27 chars</div></div>
+      </div>
+    </div>
+
+    <div class="ads-block">
+      <div class="ads-block-title">Descrições <span>4 opções · máx. 90 caracteres</span></div>
+      <div class="desc-list">
+        <div class="desc-item">
+          Análise de frete com histórico real de armadores por rota e estimativa de taxas locais. Cotação grátis.
+          <div class="desc-chars">Versão 90c: "Histórico real de armadores por rota. Taxas locais estimadas. Cotação grátis em 1 dia útil." (91c — cortar "em 1 dia útil" = 73c)</div>
+        </div>
+        <div class="desc-item">
+          Indicamos parceiros por desempenho, não pelo menor preço. Equipe especializada em Comex.
+          <div class="desc-chars">88 chars ✓</div>
+        </div>
+        <div class="desc-item">
+          Sua equipe decide com os dados certos. O Freitas Centrix faz a análise de frete. Grátis.
+          <div class="desc-chars">91c — cortar "de frete": "Sua equipe decide com os dados certos. O Freitas Centrix faz a análise. Grátis." = 79c ✓</div>
+        </div>
+        <div class="desc-item">
+          Frete é decisão operacional. Prazo, risco por rota e custo total antes de fechar o booking.
+          <div class="desc-chars">94c — cortar "total": "Frete é decisão operacional. Prazo, risco por rota e custo antes de fechar o booking." = 85c ✓</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ads-block">
+      <div class="ads-block-title">Palavras-chave · Alta intenção <span>Bid principal</span></div>
+      <div class="kw-grid">
+        <span class="kw-tag high">cotação frete internacional</span>
+        <span class="kw-tag high">frete marítimo importação</span>
+        <span class="kw-tag high">cotação frete marítimo brasil</span>
+        <span class="kw-tag high">agente de carga importação</span>
+        <span class="kw-tag high">BPO comércio exterior</span>
+        <span class="kw-tag high">gestão de importação terceirizada</span>
+        <span class="kw-tag high">custo frete china brasil</span>
+        <span class="kw-tag high">terceirização comex</span>
+        <span class="kw-tag high">frete marítimo FCL LCL brasil</span>
+        <span class="kw-tag high">despachante aduaneiro importação sp</span>
+        <span class="kw-tag high">gestão operação de importação</span>
+        <span class="kw-tag high">análise de frete internacional</span>
+      </div>
+    </div>
+
+    <div class="ads-block">
+      <div class="ads-block-title">Palavras-chave · Média intenção <span>Bid secundário</span></div>
+      <div class="kw-grid">
+        <span class="kw-tag mid">como reduzir custo de importação</span>
+        <span class="kw-tag mid">como cotar frete internacional</span>
+        <span class="kw-tag mid">visibilidade operação comex</span>
+        <span class="kw-tag mid">demurrage como evitar</span>
+        <span class="kw-tag mid">custo oculto frete marítimo</span>
+        <span class="kw-tag mid">armador confiável brasil</span>
+        <span class="kw-tag mid">auditoria de frete importação</span>
+        <span class="kw-tag mid">rota marítima china brasil prazo</span>
+        <span class="kw-tag mid">gestão de processos comex</span>
+        <span class="kw-tag mid">custo logístico comércio exterior</span>
+        <span class="kw-tag mid">equipe comex terceirizada</span>
+        <span class="kw-tag mid">importação com controle de custo</span>
+      </div>
+    </div>
+
+    <div class="ads-block">
+      <div class="ads-block-title">Palavras-chave negativas <span>Excluir da campanha</span></div>
+      <div class="kw-grid">
+        <span class="kw-tag neg">frete grátis e-commerce</span>
+        <span class="kw-tag neg">frete correios</span>
+        <span class="kw-tag neg">frete grátis compras online</span>
+        <span class="kw-tag neg">frete nacional</span>
+        <span class="kw-tag neg">calcular frete envio</span>
+        <span class="kw-tag neg">rastrear encomenda</span>
+        <span class="kw-tag neg">frete grátis shopee</span>
+        <span class="kw-tag neg">frete grátis amazon</span>
+        <span class="kw-tag neg">frete rodoviário</span>
+        <span class="kw-tag neg">transportadora entregas</span>
+        <span class="kw-tag neg">emprego comex</span>
+        <span class="kw-tag neg">curso comércio exterior</span>
+        <span class="kw-tag neg">vagas comex</span>
+        <span class="kw-tag neg">exportação artesanato</span>
+        <span class="kw-tag neg">como trabalhar em comex</span>
+        <span class="kw-tag neg">faculdade comércio exterior</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function goStep2() {
+    document.getElementById('step1').style.display = 'none';
+    document.getElementById('step2').style.display = 'flex';
+    document.getElementById('dot1').classList.remove('active');
+    document.getElementById('dot2').classList.add('active');
+  }
+  function goStep1() {
+    document.getElementById('step2').style.display = 'none';
+    document.getElementById('step1').style.display = 'flex';
+    document.getElementById('dot2').classList.remove('active');
+    document.getElementById('dot1').classList.add('active');
+  }
+  document.querySelectorAll('.form-row select').forEach(sel => {
+    sel.addEventListener('change', () => sel.classList.add('filled'));
+  });
+
+  function goStep2b() {
+    document.getElementById('step1b').style.display = 'none';
+    document.getElementById('step2b').style.display = 'flex';
+    document.getElementById('dot1b').classList.remove('active');
+    document.getElementById('dot2b').classList.add('active');
+  }
+  function goStep1b() {
+    document.getElementById('step2b').style.display = 'none';
+    document.getElementById('step1b').style.display = 'flex';
+    document.getElementById('dot2b').classList.remove('active');
+    document.getElementById('dot1b').classList.add('active');
+  }
+
+  function showSection(id, btn) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
