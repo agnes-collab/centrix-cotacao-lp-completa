@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Freitas Centrix – Materiais de Campanha v2</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&amp;family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&amp;display=swap" rel="stylesheet"/>
+
+  <meta name="description" content="Cotação de frete internacional gratuita com parceiros homologados e análise técnica de rota. Freitas Centrix — sua central de controle em Comex.">
+  <meta property="og:title" content="Freitas Centrix — Cotação de Frete Internacional Gratuita">
+  <meta property="og:description" content="Análise técnica de frete com histórico real de armadores por rota. Equipe especializada em Comex. Cotação gratuita.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://freitascentrix.com.br">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="nav">
+<div class="nav-logo">freitas <span>centrix</span></div>
+<div class="nav-tabs">
+<button class="nav-tab active" onclick="showSection('lp', this)">Landing Page</button>
+<button class="nav-tab" onclick="showSection('lp2', this)">Landing Page Compacta</button>
+<button class="nav-tab" onclick="showSection('criativos', this)">Criativos</button>
+<button class="nav-tab" onclick="showSection('ads', this)">Google Ads</button>
+</div>
+</nav>
+<!-- ═══ LANDING PAGE ═══ -->
+<div class="section active" id="lp">
+<section class="hero">
+<div class="hero-badge">Comércio Exterior · Frete Internacional</div>
+<h1>Sua cotação de frete internacional<br/><em>é competitiva?</em></h1>
+<p class="hero-sub">A gente coloca a sua cotação lado a lado com o mercado real. Se tiver espaço para negociar melhor, você vai saber. Parceiros homologados, sem conflito de interesse.</p>
+<div class="multistep-form">
+<div class="form-step" id="step1">
+<div class="form-row">
+<input placeholder="Nome completo" type="text"/>
+<input placeholder="E-mail corporativo" type="email"/>
+</div>
+<div class="form-row">
+<input placeholder="Empresa" type="text"/>
+<input placeholder="Cargo" type="text"/>
+</div>
+<button class="btn-orange" onclick="goStep2()">Continuar →</button>
+<p class="hero-disclaimer">Cotação de frete internacional gratuita. Retorno em até 1 dia útil.</p>
+</div>
+<div class="form-step" id="step2" style="display:none;">
+<div class="step2-label">Dados da operação</div>
+<div class="form-row">
+<input placeholder="Local de coleta" type="text"/>
+<input placeholder="Local de destino" type="text"/>
+</div>
+<div class="form-row">
+<select>
+<option disabled="" selected="" value="">Modal</option>
+<option>Marítimo</option>
+<option>Aéreo</option>
+<option>Rodoviário</option>
+<option>Multimodal</option>
+</select>
+<select>
+<option disabled="" selected="" value="">Incoterm</option>
+<option>EXW</option>
+<option>FOB</option>
+<option>CIF</option>
+<option>CFR</option>
+<option>DAP</option>
+<option>DDP</option>
+<option>FCA</option>
+<option>CPT</option>
+<option>Não sei / A definir</option>
+</select>
+</div>
+<div class="form-row">
+<input placeholder="NCM (se souber)" type="text"/>
+<select>
+<option disabled="" selected="" value="">Critério de escolha</option>
+<option>Preço</option>
+<option>Performance</option>
+</select>
+</div>
+<div class="form-row-actions">
+<button class="btn-back" onclick="goStep1()">← Voltar</button>
+<button class="btn-orange">Cotação de frete internacional gratuita →</button>
+</div>
+<p class="hero-disclaimer">Seus dados são usados apenas para preparar sua cotação.</p>
+</div>
+<div class="form-progress">
+<div class="progress-dot active" id="dot1"></div>
+<div class="progress-line"></div>
+<div class="progress-dot" id="dot2"></div>
+</div>
+</div>
+<div class="hero-logos">
+<span class="hero-logos-label">Empresas que confiam:</span>
+<img alt="Incepa" class="logo-img" src="https://freitascomex.com.br/wp-content/uploads/2026/04/incepa.png"/>
+<img alt="PreGel" class="logo-img" src="https://freitascomex.com.br/wp-content/uploads/2026/04/pregel-branco.png"/>
+<img alt="FGM" class="logo-img" src="https://freitascomex.com.br/wp-content/uploads/2026/04/FGM-Branco.png"/>
+<img alt="Rego-Fix" class="logo-img" src="https://freitascomex.com.br/wp-content/uploads/2026/04/regofix-branco.png"/>
+<img alt="Zen" class="logo-img" src="https://freitascomex.com.br/wp-content/uploads/2026/04/logo-zen.png"/>
+</div>
+</section>
+<section class="pain-block">
+<div class="container">
+<div class="pain-intro">
+<p class="section-label">O problema</p>
+<h2 class="section-title">Quem cota com um único agente não tem <em>referência de mercado</em>.</h2>
+<p>E quem não tem referência paga o que apresentam. Sem saber se a cotação é competitiva, se o Incoterm está correto ou se existe uma rota mais vantajosa para aquela carga.</p>
+</div>
+<div class="pain-grid">
+<div class="pain-card">
+<div class="pain-marker"></div>
+<h3>Seu agente tem interesse em qual armador você escolhe</h3>
+<p>Comissões e acordos comerciais influenciam o que é apresentado na cotação. O preço mais competitivo para você pode não ser o mais vantajoso para quem está cotando.</p>
+</div>
+<div class="pain-card">
+<div class="pain-marker"></div>
+<h3>Cotações incomparáveis</h3>
+<p>Cada agente monta o preço de um jeito diferente. Um inclui taxas locais, outro não. Um considera o Incoterm, outro ignora. Comparar fica impossível e a decisão vira chute.</p>
+</div>
+<div class="pain-card">
+<div class="pain-marker"></div>
+<h3>Frete negociado sem poder de mercado</h3>
+<p>Armadores respondem melhor a quem tem volume consolidado e relacionamento. Negociar frete individualmente, processo a processo, quase sempre resulta em tabela cheia.</p>
+</div>
+<div class="pain-card">
+<div class="pain-marker"></div>
+<h3>Incoterm mal escolhido que encarece a operação</h3>
+<p>A escolha do Incoterm define quem paga o quê — e um termo inadequado para a rota ou o perfil do fornecedor pode encarecer o frete sem que você perceba.</p>
+</div>
+</div>
+<div class="section-cta">
+<button>Cotação de frete internacional gratuita →</button>
+<span class="section-cta-ghost">Cotação de frete internacional gratuita. Retorno em até 1 dia útil.</span>
+</div>
+</div>
+</section>
+<section class="value-block">
+<div class="container">
+<div class="value-inner">
+<div class="value-text">
+<p class="section-label">O que fazemos</p>
+<h2 class="section-title">Sua cotação atual é competitiva? A gente compara com o mercado e <em>você decide com dados reais</em>.</h2>
+<p>O Freitas Centrix não compara tabelas de armadores. Avalia cada rota com base em histórico real de desempenho, analisa os custos que normalmente aparecem depois e indica o parceiro que faz sentido para o seu perfil de importação. A decisão fica com você, mas com os dados corretos na mão.</p>
+</div>
+<div class="value-visual">
+<span class="vv-label">Cotação · Rota Xangai → Santos · 1× 40'HC</span>
+<div class="frete-row top">
+<div>
+<div class="frete-carrier">MSC Mediterranean</div>
+<div class="frete-detail">Trânsito 28 dias · Escala direta · Histórico: 94% on-time nessa rota</div>
+</div>
+<div class="frete-right">
+<div class="frete-price">USD 2.840</div>
+<span class="frete-tag ok">Indicado</span>
+</div>
+</div>
+<div class="frete-row">
+<div>
+<div class="frete-carrier">CMA CGM</div>
+<div class="frete-detail">Trânsito 32 dias · 1 transbordo · Histórico: 81% on-time nessa rota</div>
+</div>
+<div class="frete-right">
+<div class="frete-price">USD 3.100</div>
+<span class="frete-tag pend">Em análise</span>
+</div>
+</div>
+<div class="frete-row">
+<div>
+<div class="frete-carrier">Evergreen</div>
+<div class="frete-detail">Trânsito 35 dias · 2 transbordos · Histórico: 76% on-time nessa rota</div>
+</div>
+<div class="frete-right">
+<div class="frete-price">USD 3.380</div>
+<span class="frete-tag pend">Em análise</span>
+</div>
+</div>
+<div class="vv-footer">Análise inclui estimativa de taxas locais · armazenagem inicial · DTA · prazo de desembaraço na rota</div>
+</div>
+</div>
+<div class="section-cta">
+<button>Cotação de frete internacional gratuita →</button>
+<span class="section-cta-ghost">Cotação de frete internacional gratuita. Retorno em até 1 dia útil.</span>
+</div>
+</div>
+</section>
+<section class="dif-block">
+<div class="container">
+<div class="dif-intro">
+<p class="section-label">Por que funciona</p>
+<h2 class="section-title">O que muda quando você tem <em>referência real de mercado</em> na mão.</h2>
+</div>
+<div class="dif-grid">
+<div class="dif-card">
+<h3>Acesso a agentes homologados, sem conflito de interesse</h3>
+<p>O Freitas Centrix não representa armador nem recebe comissão por indicação. Recomendamos o agente que faz sentido para a sua rota e o seu perfil de carga, não o que tem melhor acordo comercial.</p>
+</div>
+<div class="dif-card">
+<h3>Cotações estruturadas no mesmo formato</h3>
+<p>Todas as opções chegam com os mesmos itens detalhados, permitindo uma comparação real entre alternativas. Você decide com clareza, não por intuição.</p>
+</div>
+<div class="dif-card">
+<h3>Poder de negociação que empresa isolada não tem</h3>
+<p>Operamos com volume consolidado de clientes, o que nos dá acesso a condições que dificilmente estão disponíveis para quem negocia processo a processo.</p>
+</div>
+</div>
+<div class="section-cta">
+<button>Cotação de frete internacional gratuita →</button>
+<span class="section-cta-ghost">Cotação de frete internacional gratuita. Retorno em até 1 dia útil.</span>
+</div>
+</div>
+</section>
+<section class="centrix-block">
+<div class="container">
+<div class="centrix-inner">
+<div class="centrix-text">
+<p class="section-label">Além da cotação</p>
+<h2 class="section-title">Para quem quer controle sobre toda a operação, existe o <em>Centrix</em>.</h2>
+<p>A cotação resolve um ponto específico da cadeia. O Centrix resolve a operação inteira. Funciona como uma central de controle da sua logística internacional: execução, visibilidade e antecipação de problemas, tudo num único ambiente, sem sobrecarregar sua equipe de Comex.</p>
+</div>
+<div class="centrix-pillars">
+<div class="pillar">
+<div class="pillar-dot"></div>
+<div>
+<h4>Centralização de parceiros e dados</h4>
+<p>Armadores, despachantes, financeiro e compras conectados num só lugar. Nada de informação espalhada em e-mail.</p>
+</div>
+</div>
+<div class="pillar">
+<div class="pillar-dot"></div>
+<div>
+<h4>Execução operacional por conta nossa</h4>
+<p>Follow-up, análise documental, bookings e gestão de risco. Sua equipe foca no que exige decisão.</p>
+</div>
+</div>
+<div class="pillar">
+<div class="pillar-dot"></div>
+<div>
+<h4>Visibilidade em tempo real</h4>
+<p>Status, documentos, prazos e custos atualizados. Você acompanha sem precisar perguntar para ninguém.</p>
+</div>
+</div>
+<div class="pillar">
+<div class="pillar-dot"></div>
+<div>
+<h4>Alertas antes do problema virar custo</h4>
+<p>Atrasos e pendências sinalizados cedo o suficiente para agir antes que o impacto apareça.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section-cta" style="margin-top:2.5rem;">
+<a href="#">Cotação de frete internacional gratuita →</a>
+<span class="section-cta-ghost">Ou conheça o Centrix completo em freitascentrix.com.br</span>
+</div>
+</div>
+</section>
+<section class="proof-block">
+<div class="container">
+<p class="section-label">Quem usa, vê resultado</p>
+<h2 class="section-title" style="max-width: 560px;">O que dizem empresas que <em>já operam com o Freitas Centrix</em>.</h2>
+<div class="testimonials">
+<div class="testi-card">
+<p class="testi-quote">"Agregam transparência nos processos. Antes era tudo espalhado em e-mail e planilha."</p>
+<div class="testi-company">Incepa</div>
+</div>
+<div class="testi-card">
+<p class="testi-quote">"Melhora nosso nível de serviço com os clientes e otimiza nosso tempo de forma significativa."</p>
+<div class="testi-company">Rego-Fix</div>
+</div>
+<div class="testi-card">
+<p class="testi-quote">"Em geral uma experiência bastante positiva. Sempre fomos atendidos de forma muito rápida."</p>
+<div class="testi-company">PreGel</div>
+</div>
+<div class="testi-card">
+<p class="testi-quote">"Reduz nossos custos e nos otimiza operacionalmente. É a combinação que a gente precisava."</p>
+<div class="testi-company">Zen</div>
+</div>
+<div class="testi-card">
+<p class="testi-quote">"Tem vasto conhecimento, passando confiança e comprometimento, resultando na satisfação de todos."</p>
+<div class="testi-company">CicloMed</div>
+</div>
+<div class="testi-card">
+<p class="testi-quote">"Melhora a performance do nosso processo de importação de forma consistente."</p>
+<div class="testi-company">FGM Odontológicos</div>
+</div>
+</div>
+<div class="section-cta proof-block">
+<button>Cotação de frete internacional gratuita →</button>
+<span class="section-cta-ghost">Cotação de frete internacional gratuita. Retorno em até 1 dia útil.</span>
+</div>
+</div>
+</section>
+<section class="cta-block">
+<h2>Descubra se sua cotação de frete está competitiva no mercado.</h2>
+<p>Cotação de frete internacional gratuita. Com quem opera Comex todos os dias.</p>
+<button class="btn-navy">Cotação de frete internacional gratuita →</button>
+</section>
+</div>
+<!-- ═══ LP COMPACTA ═══ -->
+<div class="section" id="lp2">
+<section class="hero">
+<div class="hero-badge">Comércio Exterior · Frete Internacional</div>
+<h1>Sua cotação de frete internacional<br/><em>é competitiva?</em></h1>
+<p class="hero-sub">A gente coloca a sua cotação lado a lado com o mercado real. Se tiver espaço para negociar melhor, você vai saber. Parceiros homologados, sem conflito de interesse.</p>
+<div class="multistep-form">
+<div class="form-step" id="step1b">
+<div class="form-row">
+<input placeholder="Nome completo" type="text"/>
+<input placeholder="E-mail corporativo" type="email"/>
+</div>
+<div class="form-row">
+<input placeholder="Empresa" type="text"/>
+<input placeholder="Cargo" type="text"/>
+</div>
+<button class="btn-orange" onclick="goStep2b()">Continuar →</button>
+<p class="hero-disclaimer">Cotação de frete internacional gratuita. Retorno em até 1 dia útil.</p>
+</div>
+<div class="form-step" id="step2b" style="display:none;">
+<div class="step2-label">Dados da operação</div>
+<div class="form-row">
+<input placeholder="Local de coleta" type="text"/>
+<input placeholder="Local de destino" type="text"/>
+</div>
+<div class="form-row">
+<select>
+<option disabled="" selected="" value="">Modal</option>
+<option>Marítimo</option>
+<option>Aéreo</option>
+<option>Rodoviário</option>
+<option>Multimodal</option>
+</select>
+<select>
+<option disabled="" selected="" value="">Incoterm</option>
+<option>EXW</option>
+<option>FOB</option>
+<option>CIF</option>
+<option>CFR</option>
+<option>DAP</option>
+<option>DDP</option>
+<option>FCA</option>
+<option>CPT</option>
+<option>Não sei / A definir</option>
+</select>
+</div>
+<div class="form-row">
+<input placeholder="NCM (se souber)" type="text"/>
+<select>
+<option disabled="" selected="" value="">Critério de escolha</option>
+<option>Preço</option>
+<option>Performance</option>
+</select>
+</div>
+<div class="form-row-actions">
+<button class="btn-back" onclick="goStep1b()">← Voltar</button>
+<button class="btn-orange">Cotação de frete internacional gratuita →</button>
+</div>
+<p class="hero-disclaimer">Seus dados são usados apenas para preparar sua cotação.</p>
+</div>
+<div class="form-progress">
+<div class="progress-dot active" id="dot1b"></div>
+<div class="progress-line"></div>
+<div class="progress-dot" id="dot2b"></div>
+</div>
+</div>
+<div class="hero-logos">
+<span class="hero-logos-label">Empresas que confiam:</span>
+<img alt="Incepa" class="logo-img" src="https://freitascomex.com.br/wp-content/uploads/2026/04/incepa.png"/>
+<img alt="PreGel" class="logo-img" src="https://freitascomex.com.br/wp-content/uploads/2026/04/pregel-branco.png"/>
+<img alt="FGM" class="logo-img" src="https://freitascomex.com.br/wp-content/uploads/2026/04/FGM-Branco.png"/>
+<img alt="Rego-Fix" class="logo-img" src="https://freitascomex.com.br/wp-content/uploads/2026/04/regofix-branco.png"/>
+<img alt="Zen" class="logo-img" src="https://freitascomex.com.br/wp-content/uploads/2026/04/logo-zen.png"/>
+</div>
+</section>
+<section class="pain-block">
+<div class="container">
+<div class="pain-intro">
+<p class="section-label">O problema</p>
+<h2 class="section-title">Quem cota com um único agente não tem <em>referência de mercado</em>.</h2>
+<p>E quem não tem referência paga o que apresentam — sem saber se podia negociar melhor.</p>
+</div>
+<div class="pain-grid">
+<div class="pain-card">
+<div class="pain-marker"></div>
+<h3>Seu agente tem interesse em qual armador você escolhe</h3>
+<p>Comissões e acordos comerciais influenciam o que é apresentado na cotação. O preço mais competitivo para você pode não ser o mais vantajoso para quem está cotando.</p>
+</div>
+<div class="pain-card">
+<div class="pain-marker"></div>
+<h3>Frete negociado sem poder de mercado</h3>
+<p>Armadores respondem melhor a quem tem volume consolidado. Negociar processo a processo quase sempre resulta em tabela cheia.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="dif-block">
+<div class="container">
+<div class="dif-intro">
+<p class="section-label">Por que funciona</p>
+<h2 class="section-title">O que muda quando você tem <em>referência real de mercado</em> na mão.</h2>
+</div>
+<div class="dif-grid">
+<div class="dif-card">
+<h3>Agentes homologados, sem conflito de interesse</h3>
+<p>Não representamos armador nem recebemos comissão por indicação. Recomendamos o que faz sentido para a sua rota e perfil de carga.</p>
+</div>
+<div class="dif-card">
+<h3>Cotações no mesmo formato, comparáveis de verdade</h3>
+<p>Todas as opções chegam com os mesmos itens detalhados. Você decide com clareza, não por intuição.</p>
+</div>
+<div class="dif-card">
+<h3>Poder de negociação que empresa isolada não tem</h3>
+<p>Operamos com volume consolidado de clientes, com acesso a condições que dificilmente estão disponíveis para quem negocia processo a processo.</p>
+</div>
+</div>
+<div class="section-cta">
+<button>Cotação de frete internacional gratuita →</button>
+<span class="section-cta-ghost">Cotação de frete internacional gratuita. Retorno em até 1 dia útil.</span>
+</div>
+</div>
+</section>
+<section class="cta-block">
+<h2>Descubra se sua cotação de frete está competitiva no mercado.</h2>
+<p>Cotação de frete internacional gratuita. Com quem opera Comex todos os dias.</p>
+<button class="btn-navy">Cotação de frete internacional gratuita →</button>
+</section>
+</div>
+<!-- ═══ CRIATIVOS ═══ -->
+<div class="section" id="criativos">
+
+<div class="cri-section">
+<h2>Criativos de Campanha</h2>
+<p class="sub">3 copies · 2 versões cada · Feed 1350×1080 e Stories 1080×1920</p>
+<!-- COPY 1 -->
+<div class="copy-block">
+<div class="copy-label">
+<div class="copy-num">1</div>
+<div>
+<h3>Dor · O custo que ninguém cotou</h3>
+<span>Público: Gerente / Coordenador de Comex</span>
+</div>
+</div>
+<div class="versoes-grid">
+<div class="versao-block">
+<div class="versao-title">Versão 01</div>
+<div class="formatos-row">
+<div class="arte-card">
+<div class="arte-tag">Feed · 1080×1350</div>
+<div class="arte-feed"><img alt="Copy 1 · Feed 01" src="https://freitascomex.com.br/wp-content/uploads/2026/04/C1-FEED-01.png"/></div>
+</div>
+<div class="arte-card">
+<div class="arte-tag">Stories · 1080×1920</div>
+<div class="arte-stories"><img alt="Copy 1 · Stories 01" src="https://freitascomex.com.br/wp-content/uploads/2026/04/C1-STORIES-01.png"/></div>
+</div>
+</div>
+</div>
+<div class="versao-block">
+<div class="versao-title">Versão 02</div>
+<div class="formatos-row">
+<div class="arte-card">
+<div class="arte-tag">Feed · 1080×1350</div>
+<div class="arte-feed"><img alt="Copy 1 · Feed 02" src="https://freitascomex.com.br/wp-content/uploads/2026/04/C1-FEED-02.png"/></div>
+</div>
+<div class="arte-card">
+<div class="arte-tag">Stories · 1080×1920</div>
+<div class="arte-stories"><img alt="Copy 1 · Stories 02" src="https://freitascomex.com.br/wp-content/uploads/2026/04/C1-STORIES-02.png"/></div>
+</div>
+</div>
+</div>
+</div>
+<div class="legenda-block">
+<h4>Legenda</h4>
+<p>Sua cotação de frete é competitiva — ou só parece ser?<br/>
+        Seu agente tem interesse em qual armador você escolhe. O Freitas Centrix não. Cotação de frete internacional gratuita. Link na bio.<br/>
+        👉 Cotação de frete internacional gratuita. Link na bio.</p>
+<div class="hashtags">#FreteInternacional #Importacao #ComercioExterior #Comex</div>
+</div>
+</div>
+<!-- COPY 2 -->
+<div class="copy-block">
+<div class="copy-label">
+<div class="copy-num">2</div>
+<div>
+<h3>Diferenciação · O armador certo para a rota certa</h3>
+<span>Público: Gerente / Coordenador de Comex</span>
+</div>
+</div>
+<div class="versoes-grid">
+<div class="versao-block">
+<div class="versao-title">Versão 01</div>
+<div class="formatos-row">
+<div class="arte-card">
+<div class="arte-tag">Feed · 1080×1350</div>
+<div class="arte-feed"><img alt="Copy 2 · Feed 01" src="https://freitascomex.com.br/wp-content/uploads/2026/04/C2-FEED-01.png"/></div>
+</div>
+<div class="arte-card">
+<div class="arte-tag">Stories · 1080×1920</div>
+<div class="arte-stories"><img alt="Copy 2 · Stories 01" src="https://freitascomex.com.br/wp-content/uploads/2026/04/C2-STORIES-01.png"/></div>
+</div>
+</div>
+</div>
+<div class="versao-block">
+<div class="versao-title">Versão 02</div>
+<div class="formatos-row">
+<div class="arte-card">
+<div class="arte-tag">Feed · 1080×1350</div>
+<div class="arte-feed"><img alt="Copy 2 · Feed 02" src="https://freitascomex.com.br/wp-content/uploads/2026/04/C2-FEED-02.png"/></div>
+</div>
+<div class="arte-card">
+<div class="arte-tag">Stories · 1080×1920</div>
+<div class="arte-stories"><img alt="Copy 2 · Stories 02" src="https://freitascomex.com.br/wp-content/uploads/2026/04/C2-STORIES-02.png"/></div>
+</div>
+</div>
+</div>
+</div>
+<div class="legenda-block">
+<h4>Legenda</h4>
+<p>Você está escolhendo a melhor opção de frete — ou a que seu agente prefere?<br/>
+        O Freitas Centrix compara sua cotação com o mercado real, sem conflito de interesse. Grátis.<br/>
+        👉 Link na bio.</p>
+<div class="hashtags">#FreteInternacional #Importacao #ComercioExterior #GestaoDeComex</div>
+</div>
+</div>
+<!-- COPY 3 -->
+<div class="copy-block">
+<div class="copy-label">
+<div class="copy-num">3</div>
+<div>
+<h3>Posicionamento · Cotação como decisão estratégica</h3>
+<span>Público: Diretor de Operações / Logística</span>
+</div>
+</div>
+<div class="versoes-grid">
+<div class="versao-block">
+<div class="versao-title">Versão 01</div>
+<div class="formatos-row">
+<div class="arte-card">
+<div class="arte-tag">Feed · 1080×1350</div>
+<div class="arte-feed"><img alt="Copy 3 · Feed 01" src="https://freitascomex.com.br/wp-content/uploads/2026/04/C3-FEED-01.png"/></div>
+</div>
+<div class="arte-card">
+<div class="arte-tag">Stories · 1080×1920</div>
+<div class="arte-stories"><img alt="Copy 3 · Stories 01" src="https://freitascomex.com.br/wp-content/uploads/2026/04/C3-STORIES-01.png"/></div>
+</div>
+</div>
+</div>
+<div class="versao-block">
+<div class="versao-title">Versão 02</div>
+<div class="formatos-row">
+<div class="arte-card">
+<div class="arte-tag">Feed · 1080×1350</div>
+<div class="arte-feed"><img alt="Copy 3 · Feed 02" src="https://freitascomex.com.br/wp-content/uploads/2026/04/C3-FEED-02.png"/></div>
+</div>
+<div class="arte-card">
+<div class="arte-tag">Stories · 1080×1920</div>
+<div class="arte-stories"><img alt="Copy 3 · Stories 02" src="https://freitascomex.com.br/wp-content/uploads/2026/04/C3-STORIES-02.png"/></div>
+</div>
+</div>
+</div>
+</div>
+<div class="legenda-block">
+<h4>Legenda</h4>
+<p>Quem negocia frete sem referência de mercado paga o que apresentam — sem saber se podia pagar menos.<br/>
+        Cotação de frete internacional gratuita com o Freitas Centrix e descubra onde está deixando dinheiro na mesa.<br/>
+        👉 Link na bio.</p>
+<div class="hashtags">#LogisticaInternacional #Importacao #ComercioExterior #GestaoLogistica</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ═══ GOOGLE ADS ═══ -->
+<div class="section" id="ads">
+<div class="ads-section">
+<h2>Campanha Google Search</h2>
+<p class="sub">Headlines, descrições e palavras-chave para captura de leads qualificados em Comex</p>
+<div class="ads-block">
+<div class="ads-block-title">Preview de anúncio <span>Exemplo</span></div>
+<div class="preview-box">
+<div class="preview-url">freitascentrix.com.br › cotacao-frete-internacional</div>
+<div class="preview-title">Cotação de Frete Internacional | Parceiros Homologados em Comex</div>
+<div class="preview-desc">Análise técnica de frete com histórico real de desempenho por rota. Equipe especializada em importação. Cotação gratuita em até 1 dia útil.</div>
+</div>
+</div>
+<div class="ads-block">
+<div class="ads-block-title">Headlines <span>15 opções · máx. 30 caracteres</span></div>
+<div class="headline-grid">
+<div class="hl-item">Cotação de Frete Grátis<div class="hl-chars">22 chars</div></div>
+<div class="hl-item">Análise de Rota de Importação<div class="hl-chars">28 chars</div></div>
+<div class="hl-item">Parceiros Homologados Comex<div class="hl-chars">26 chars</div></div>
+<div class="hl-item">Frete com Histórico por Rota<div class="hl-chars">27 chars</div></div>
+<div class="hl-item">Custo Real de Importação<div class="hl-chars">23 chars</div></div>
+<div class="hl-item">Frete Além do Preço<div class="hl-chars">18 chars</div></div>
+<div class="hl-item">Importação Sem Custo Oculto<div class="hl-chars">26 chars</div></div>
+<div class="hl-item">Equipe Especializada em Comex<div class="hl-chars">28 chars</div></div>
+<div class="hl-item">Freitas Centrix · Comex<div class="hl-chars">22 chars</div></div>
+<div class="hl-item">Análise Técnica de Frete<div class="hl-chars">23 chars</div></div>
+<div class="hl-item">Armador Certo para Sua Rota<div class="hl-chars">26 chars</div></div>
+<div class="hl-item">Gestão de Importação<div class="hl-chars">20 chars</div></div>
+<div class="hl-item">Controle em Comércio Exterior<div class="hl-chars">28 chars</div></div>
+<div class="hl-item">BPO de Comex com Resultado<div class="hl-chars">25 chars</div></div>
+<div class="hl-item">Diagnóstico Logístico Grátis<div class="hl-chars">27 chars</div></div>
+</div>
+</div>
+<div class="ads-block">
+<div class="ads-block-title">Descrições <span>4 opções · máx. 90 caracteres</span></div>
+<div class="desc-list">
+<div class="desc-item">
+          Análise de frete com histórico real de armadores por rota e estimativa de taxas locais. Cotação grátis.
+          <div class="desc-chars">Versão 90c: "Histórico real de armadores por rota. Taxas locais estimadas. Cotação grátis em 1 dia útil." (91c — cortar "em 1 dia útil" = 73c)</div>
+</div>
+<div class="desc-item">
+          Indicamos parceiros por desempenho, não pelo menor preço. Equipe especializada em Comex.
+          <div class="desc-chars">88 chars ✓</div>
+</div>
+<div class="desc-item">
+          Sua equipe decide com os dados certos. O Freitas Centrix faz a análise de frete. Grátis.
+          <div class="desc-chars">91c — cortar "de frete": "Sua equipe decide com os dados certos. O Freitas Centrix faz a análise. Grátis." = 79c ✓</div>
+</div>
+<div class="desc-item">
+          Frete é decisão operacional. Prazo, risco por rota e custo total antes de fechar o booking.
+          <div class="desc-chars">94c — cortar "total": "Frete é decisão operacional. Prazo, risco por rota e custo antes de fechar o booking." = 85c ✓</div>
+</div>
+</div>
+</div>
+<div class="ads-block">
+<div class="ads-block-title">Palavras-chave · Alta intenção <span>Bid principal</span></div>
+<div class="kw-grid">
+<span class="kw-tag high">cotação frete internacional</span>
+<span class="kw-tag high">frete marítimo importação</span>
+<span class="kw-tag high">cotação frete marítimo brasil</span>
+<span class="kw-tag high">agente de carga importação</span>
+<span class="kw-tag high">BPO comércio exterior</span>
+<span class="kw-tag high">gestão de importação terceirizada</span>
+<span class="kw-tag high">custo frete china brasil</span>
+<span class="kw-tag high">terceirização comex</span>
+<span class="kw-tag high">frete marítimo FCL LCL brasil</span>
+<span class="kw-tag high">despachante aduaneiro importação sp</span>
+<span class="kw-tag high">gestão operação de importação</span>
+<span class="kw-tag high">análise de frete internacional</span>
+</div>
+</div>
+<div class="ads-block">
+<div class="ads-block-title">Palavras-chave · Média intenção <span>Bid secundário</span></div>
+<div class="kw-grid">
+<span class="kw-tag mid">como reduzir custo de importação</span>
+<span class="kw-tag mid">como cotar frete internacional</span>
+<span class="kw-tag mid">visibilidade operação comex</span>
+<span class="kw-tag mid">demurrage como evitar</span>
+<span class="kw-tag mid">custo oculto frete marítimo</span>
+<span class="kw-tag mid">armador confiável brasil</span>
+<span class="kw-tag mid">auditoria de frete importação</span>
+<span class="kw-tag mid">rota marítima china brasil prazo</span>
+<span class="kw-tag mid">gestão de processos comex</span>
+<span class="kw-tag mid">custo logístico comércio exterior</span>
+<span class="kw-tag mid">equipe comex terceirizada</span>
+<span class="kw-tag mid">importação com controle de custo</span>
+</div>
+</div>
+<div class="ads-block">
+<div class="ads-block-title">Palavras-chave negativas <span>Excluir da campanha</span></div>
+<div class="kw-grid">
+<span class="kw-tag neg">frete grátis e-commerce</span>
+<span class="kw-tag neg">frete correios</span>
+<span class="kw-tag neg">frete grátis compras online</span>
+<span class="kw-tag neg">frete nacional</span>
+<span class="kw-tag neg">calcular frete envio</span>
+<span class="kw-tag neg">rastrear encomenda</span>
+<span class="kw-tag neg">frete grátis shopee</span>
+<span class="kw-tag neg">frete grátis amazon</span>
+<span class="kw-tag neg">frete rodoviário</span>
+<span class="kw-tag neg">transportadora entregas</span>
+<span class="kw-tag neg">emprego comex</span>
+<span class="kw-tag neg">curso comércio exterior</span>
+<span class="kw-tag neg">vagas comex</span>
+<span class="kw-tag neg">exportação artesanato</span>
+<span class="kw-tag neg">como trabalhar em comex</span>
+<span class="kw-tag neg">faculdade comércio exterior</span>
+</div>
+</div>
+</div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
